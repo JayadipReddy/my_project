@@ -1,0 +1,13 @@
+2026-01-12 12:53:01.825467 - Consent: Accepted
+2026-01-12 13:01:04.670960 - Consent: Accepted
+2026-01-12 13:01:34.471945 - Consent: Rejected
+2026-01-12 13:01:46.040298 - Consent: Accepted
+2026-01-12 14:51:23.416930 - Consent: Rejected
+2026-01-12 14:51:28.760864 - Consent: Accepted
+2026-01-12 14:56:19.802936 - Consent: Accepted
+2026-01-12 14:57:18.457690 - Consent: Accepted
+2026-01-12 15:38:58.955574 - Consent: Rejected
+2026-01-12 15:39:44.683007 - Consent: Rejected
+2026-01-12 17:04:09.745246 - Consent: Accepted
+2026-01-13 14:09:00.065222 - Consent: Accepted
+UUID=0d5266fe-2b74-4bec-9509-402db1e5bbfb | CONSENT=ACCEPTED | TIME=2026-01-13 15:47:22
