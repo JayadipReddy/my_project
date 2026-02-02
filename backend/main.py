@@ -12,8 +12,8 @@ import models
 import uuid
 
 from models import CookieConsent
-from services import cookie_consent_service
-
+# from services import cookie_consent_service
+from services.cookie_consent_service import handle_cookie_consent
 
 
 class CookieConsentRequest(BaseModel):
