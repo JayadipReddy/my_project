@@ -93,13 +93,13 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
 #         "status": "saved to database"
 #     }
 
-@app.post("/cookie-consent")
-def save_cookie_consent(
-    data: CookieConsentRequest,
-    db: Session = Depends(get_db)
-):
-    return cookie_consent_service.handle_cookie_consent(
-        data.dict(), db
-    )
+#@app.post("/cookie-consent")
+#def save_cookie_consent(
+#    data: CookieConsentRequest,
+#    db: Session = Depends(get_db)
+#):
+#    return cookie_consent_service.handle_cookie_consent(
+ #       data.dict(), db
+ #   )
 
 
