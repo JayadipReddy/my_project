@@ -2,9 +2,9 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
   backend:
@@ -23,7 +23,6 @@ jobs:
       - name: Install backend dependencies
         run: |
           cd backend
-          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Backend import check

@@ -7,6 +7,8 @@ import { useState } from "react";
 export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [randomText, setRandomText] = useState("");
+
 
   // popup visibility
   const [showConsent, setShowConsent] = useState(true);
@@ -89,6 +91,15 @@ export default function Home() {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+
+            <input
+              type="text"
+              placeholder="Comments"
+              className="w-full rounded-md border border-zinc-300 p-2 focus:border-blue-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-white"
+              value={randomText}
+              onChange={(e) => setRandomText(e.target.value)}
+            />
+
 
           <button
             type="submit"

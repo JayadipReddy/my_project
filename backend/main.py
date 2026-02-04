@@ -23,13 +23,13 @@ class CookieConsentRequest(BaseModel):
 
 
 
-from fastapi import FastAPI
+#from fastapi import FastAPI
 
-app = FastAPI()
+#app = FastAPI()
 
-@app.on_event("startup")
-def on_startup():
-    models.Base.metadata.create_all(bind=engine)
+#@app.on_event("startup")
+#def on_startup():
+models.Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI()
