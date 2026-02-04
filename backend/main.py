@@ -10,6 +10,7 @@ from models import User
 from schemas import LoginRequest
 import models
 import uuid
+import os
 
 from models import CookieConsent
 # from services import cookie_consent_service
@@ -23,13 +24,9 @@ class CookieConsentRequest(BaseModel):
 
 
 
-#from fastapi import FastAPI
 
-#app = FastAPI()
-
-#@app.on_event("startup")
-#def on_startup():
-models.Base.metadata.create_all(bind=engine)
+if os.getenv("CI") != "true":
+    models.Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI()
