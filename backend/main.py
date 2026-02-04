@@ -13,6 +13,7 @@ import uuid
 import os
 
 from models import CookieConsent
+from services import cookie_consent_service
 # from services import cookie_consent_service
 from services.cookie_consent_service import handle_cookie_consent
 
@@ -89,6 +90,15 @@ def login(data: LoginRequest, db: Session = Depends(get_db)):
 #         "userid": user_id,
 #         "status": "saved to database"
 #     }
+
+@app.post("/cookie-consent")
+def save_cookie_consent(
+    data: CookieConsentRequest,
+    db: Session = Depends(get_db)
+):
+    return cookie_consent_service.handle_cookie_consent(
+       data.dict(), db
+  )
 
 
 
