@@ -52,10 +52,12 @@ pipeline {
             steps {
                 bat '''
                 cd frontend
-                start "" cmd /c npm run start
+                set PORT=%FRONTEND_PORT%
+                start "" cmd /c npx next start -H 0.0.0.0 -p %FRONTEND_PORT%
                 '''
             }
         }
+
 
 
         stage('Keep Job Alive') {
