@@ -48,24 +48,13 @@ pipeline {
             }
         }
 
-        stage('Start Frontend') {
+        stage('Start Frontend + JobAlive') {
             steps {
                 bat '''
                 cd frontend
-                REM give backend time (important)
-                timeout /t 10 /nobreak
+                echo Starting Next.js in FOREGROUND (this is required)
 
-                REM start Next.js explicitly via npx
-                start "" /B npx next start -H 0.0.0.0 -p %FRONTEND_PORT%
-                '''
-            }
-        }
-
-        stage('Keep Job Alive') {
-            steps {
-                echo "Keeping Jenkins job alive so backend & frontend stay running"
-                bat '''
-                ping 127.0.0.1 -t
+                npx next start -H 0.0.0.0 -p %FRONTEND_PORT%
                 '''
             }
         }
