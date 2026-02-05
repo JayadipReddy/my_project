@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    options {
+        skipDefaultCheckout()
+    }
+
     environment {
         BACKEND_PORT = "8000"
         FRONTEND_PORT = "3000"
@@ -52,8 +56,7 @@ pipeline {
             steps {
                 bat '''
                 cd frontend
-                echo Starting Next.js in FOREGROUND (this is required)
-
+                echo Starting Next.js in FOREGROUND
                 npx next start -H 0.0.0.0 -p %FRONTEND_PORT%
                 '''
             }
