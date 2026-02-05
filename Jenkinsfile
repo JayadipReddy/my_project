@@ -43,7 +43,7 @@ pipeline {
                 bat '''
                 cd backend
                 call .\\.venv\\Scripts\\activate
-                start /B uvicorn main:app --host 0.0.0.0 --port %BACKEND_PORT%
+                start "" cmd /c uvicorn main:app --host 0.0.0.0 --port %BACKEND_PORT%
                 '''
             }
         }
@@ -52,7 +52,16 @@ pipeline {
             steps {
                 bat '''
                 cd frontend
-                start /B npm run start
+                start "" cmd /c npm run start
+                '''
+            }
+        }
+
+        stage('Keep Job Alive') {
+            steps {
+                echo "Keeping Jenkins job alive so localhost stays up"
+                bat '''
+                ping 127.0.0.1 -t
                 '''
             }
         }
