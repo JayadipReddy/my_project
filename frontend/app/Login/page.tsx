@@ -63,14 +63,14 @@ export default function Home() {
         <Image
           src="/logo.png"
           alt="Logo"
-          width={80}
-          height={80}
+          width={100}
+          height={100}
           className="mx-auto mb-4"
           priority
         />
 
         <h1 className="mb-5 text-center text-2xl font-semibold text-black dark:text-white">
-          Login
+          Login 
         </h1>
 
         <form onSubmit={handleLogin} className="flex flex-col gap-3">
@@ -92,13 +92,13 @@ export default function Home() {
             required
           />
 
-            <input
+            {/* <input
               type="text"
               placeholder="Comments"
               className="w-full rounded-md border border-zinc-300 p-2 focus:border-blue-500 focus:outline-none dark:border-zinc-700 dark:bg-zinc-800 dark:text-white"
               value={randomText}
               onChange={(e) => setRandomText(e.target.value)}
-            />
+            /> */}
 
 
           <button
