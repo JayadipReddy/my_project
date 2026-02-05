@@ -43,7 +43,7 @@ pipeline {
                 bat '''
                 cd backend
                 call .\\.venv\\Scripts\\activate
-                start cmd /k uvicorn main:app --host 127.0.0.1 --port 8000
+                start /B uvicorn main:app --host 0.0.0.0 --port %BACKEND_PORT%
                 '''
             }
         }
@@ -52,7 +52,7 @@ pipeline {
             steps {
                 bat '''
                 cd frontend
-                start cmd /k npm run start
+                start /B npm run start
                 '''
             }
         }
