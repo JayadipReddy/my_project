@@ -43,7 +43,7 @@ pipeline {
                 bat '''
                 cd backend
                 call .\\.venv\\Scripts\\activate
-                start "" cmd /c uvicorn main:app --host 0.0.0.0 --port %BACKEND_PORT%
+                start "" /B uvicorn main:app --host 0.0.0.0 --port %BACKEND_PORT%
                 '''
             }
         }
@@ -52,17 +52,18 @@ pipeline {
             steps {
                 bat '''
                 cd frontend
-                set PORT=%FRONTEND_PORT%
-                start "" cmd /c npx next start -H 0.0.0.0 -p %FRONTEND_PORT%
+                REM give backend time (important)
+                timeout /t 10 /nobreak
+
+                REM start Next.js explicitly via npx
+                start "" /B npx next start -H 0.0.0.0 -p %FRONTEND_PORT%
                 '''
             }
         }
 
-
-
         stage('Keep Job Alive') {
             steps {
-                echo "Keeping Jenkins job alive so localhost stays up"
+                echo "Keeping Jenkins job alive so backend & frontend stay running"
                 bat '''
                 ping 127.0.0.1 -t
                 '''
