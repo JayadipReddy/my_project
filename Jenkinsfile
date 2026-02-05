@@ -32,15 +32,25 @@ pipeline {
             }
         }
 
-        stage('Frontend Build') {
+       stage('Frontend Build') {
             steps {
                 bat '''
                 cd frontend
+
+                echo ===== Running npm install =====
                 npm install
+                if errorlevel 1 exit /b 1
+
+                echo ===== Running npm run build =====
                 npm run build
+                if errorlevel 1 exit /b 1
+
+                echo ===== Verifying .next directory =====
+                dir .next || exit /b 1
                 '''
             }
         }
+
 
         stage('Start Backend') {
             steps {
