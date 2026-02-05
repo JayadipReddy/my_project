@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        BACKEND_PORT = "8000"
+        FRONTEND_PORT = "3000"
+    }
+
     stages {
 
         stage('Checkout Code') {
@@ -10,37 +15,46 @@ pipeline {
             }
         }
 
-        stage('Backend - Setup & Check') {
+        stage('Backend Setup') {
             steps {
-                dir('backend') {
-                    bat '''
+                bat '''
+                cd backend
+                if not exist .venv (
                     python -m venv .venv
-                    .venv\\Scripts\\activate
-                    pip install -r requirements.txt
-                    python -c "import main"
-                    '''
-                }
+                )
+                call .\\.venv\\Scripts\\activate
+                pip install -r requirements.txt
+                '''
             }
         }
 
-        stage('Frontend - Build') {
+        stage('Frontend Build') {
             steps {
-                dir('frontend') {
-                    bat '''
-                    npm install
-                    npm run build
-                    '''
-                }
+                bat '''
+                cd frontend
+                npm install
+                npm run build
+                '''
             }
         }
-    }
 
-    post {
-        success {
-            echo '✅ CI Pipeline Passed'
+        stage('Start Backend') {
+            steps {
+                bat '''
+                cd backend
+                call .\\.venv\\Scripts\\activate
+                start cmd /k uvicorn main:app --host 127.0.0.1 --port 8000
+                '''
+            }
         }
-        failure {
-            echo '❌ CI Pipeline Failed'
+
+        stage('Start Frontend') {
+            steps {
+                bat '''
+                cd frontend
+                start cmd /k npm run start
+                '''
+            }
         }
     }
 }
